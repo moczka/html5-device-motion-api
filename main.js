@@ -53,8 +53,8 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = (e.accelerationIncludingGravity.x * 5)/50;
-		ay = (e.accelerationIncludingGravity.y * 5)/50;
+		ax = (e.acceleration.x * 2);
+		ay = (e.acceleration.y * 2);
 		
 		ship.velX += ax;
 		ship.velY += ay;
