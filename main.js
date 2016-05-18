@@ -34,7 +34,7 @@ function motionApp(){
 		
 		
 		ship.x += ship.velX;
-		ship.y += ship.velX;
+		ship.y += ship.velY;
 		
 		mainContext.save();
 		mainContext.translate(ship.x, ship.y);
