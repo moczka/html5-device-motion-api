@@ -31,13 +31,23 @@ function motionApp(){
 				//draws the canvas with ship
 		mainContext.fillStyle = '#000';
 		mainContext.fillRect(0,0,mainCanvas.width, mainCanvas.height);
-		
+	
+		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
+		if (landscapeOrientation) {
+			ship.velX += ax;
+			ship.velY += ay;
+		} else {
+			ship.velX += ax;
+			ship.velY -= ay;
+		}
 		
 		ship.velX *= 0.98;
 		ship.velY *= 0.98;
 		
-		ship.x += ship.velX;
-		ship.y += ship.velY;
+		ship.x = parseInt(ship.x + ship.velX / 50);
+		ship.y = parseInt(ship.y + ship.velY / 50);
+		
+		ship.angle = Math.atan2(ship.velY, ship.velX);	
 		
 		mainContext.save();
 		mainContext.translate(ship.x, ship.y);
@@ -56,14 +66,9 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = (e.accelerationIncludingGravity.x * 5)/50;
-		ay = (e.accelerationIncludingGravity.y * 5)/50;
-		
-		ship.velX += ax;
-		ship.velY += ay;
-		
-		ship.angle = Math.atan2(ship.velY, ship.velX);
-		
+		ax = e.accelerationIncludingGravity.x * 5;
+		ay = e.accelerationIncludingGravity.y * 5;
+	
 		gammaOutput.innerHTML = "Device Left/Right Tilt: "+tiltLR;
 		betaOutput.innerHTML = "Device Front/Back Tilt: "+tiltFB;
 		
