@@ -41,8 +41,8 @@ function motionApp(){
 			ship.velY -= ay;
 		}
 		
-		ship.velX *= 0.98;
-		ship.velY *= 0.98;
+		ship.velX = ship.velX*0.98;
+		ship.velY = ship.velY*0.98;
 		
 		ship.x = parseInt(ship.x + ship.velX / 50);
 		ship.y = parseInt(ship.y + ship.velY / 50);
