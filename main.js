@@ -33,8 +33,11 @@ function motionApp(){
 		mainContext.fillRect(0,0,mainCanvas.width, mainCanvas.height);
 		
 		
-		ship.x += ship.velX;
-		ship.y += ship.velY;
+		ship.velX *= 0.98;
+		ship.velY *= 0.98;
+		
+		ship.x = (ship.x+ship.velX)/50;
+		ship.y = (ship.y+ship.velY)/50;
 		
 		mainContext.save();
 		mainContext.translate(ship.x, ship.y);
@@ -53,8 +56,8 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = (e.accelerationIncludingGravity.x * 5)/50;
-		ay = (e.accelerationIncludingGravity.y * 5)/50;
+		ax = e.accelerationIncludingGravity.x * 5;
+		ay = e.accelerationIncludingGravity.y * 5;
 		
 		ship.velX += ax;
 		ship.velY += ay;
