@@ -41,11 +41,9 @@ function motionApp(){
 			ship.velY -= ay;
 		}
 		
-		ship.velX = ship.velX*0.98;
-		ship.velY = ship.velY*0.98;
 		
-		ship.x = parseInt(ship.x + ship.velX / 50);
-		ship.y = parseInt(ship.y + ship.velY / 50);
+		ship.x = (ship.x + ship.velX) / 50;
+		ship.y = (ship.y + ship.velY) / 50;
 		
 		ship.angle = Math.atan2(ship.velY, ship.velX);	
 		
