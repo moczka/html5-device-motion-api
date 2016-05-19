@@ -62,13 +62,13 @@ function motionApp(){
 		
 		var futureVelX, futureVelY;
 		
-		ax = e.accelerationIncludingGravity.x;
-		ay = e.accelerationIncludingGravity.y;
+		ax = (e.accelerationIncludingGravity.x)/36;
+		ay = (e.accelerationIncludingGravity.y)/36;
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
-			futureVelX = ship.velX+ay;
-			futureVelY = ship.velY+ax;
+			futureVelX = ship.velX-ay;
+			futureVelY = ship.velY-ax;
 		} else {
 			futureVelX = ship.velX+ax;
 			futureVelY = ship.velY-ay;
