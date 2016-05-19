@@ -57,8 +57,8 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = (e.accelerationIncludingGravity.x * 5)/50;
-		ay = (e.accelerationIncludingGravity.y * 5)/50;
+		ax = e.acceleration.x * 5;
+		ay = e.acceleration.y * 5;
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
