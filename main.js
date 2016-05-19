@@ -25,7 +25,7 @@ function motionApp(){
 	var mainContext = mainCanvas.getContext('2d');
 	var friction = 0.005;
 	
-	var ship = {x:425, y:240, velX:0, velY:0, thrust:0.25, width:35, height:28, angle:0};
+	var ship = {x:425, y:240, velX:0, velY:0, thrust:0.25, width:35, height:28, angle:0, canvasHeight:480, canvasWidth:850};
 	
 	
 	setInterval(function(){
@@ -42,7 +42,7 @@ function motionApp(){
 		ship.x += ship.velX;
 		ship.y += ship.velY;
 		
-			
+		checkBoundary(ship);	
 		
 		mainContext.save();
 		mainContext.translate(ship.x, ship.y);
@@ -53,7 +53,18 @@ function motionApp(){
 		
 	}, 25);
 	
-	
+	function checkBoundary(object){
+
+		if(object.x >= object.canvasWidth+object.width){
+			object.x = 0;
+		}else if(object.x <= -object.width){
+			object.x = object.canvasWidth-object.width;
+		}else if(object.y >= object.canvasHeight+object.height){
+			object.y = 0;
+		}else if(object.y <= -object.height){
+			object.y = object.canvasHeight-object.height;
+		}	
+	}
 	
 	function devMotionHandler(e){
 		//handles the device orientation event.
@@ -61,7 +72,7 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		var futureVelX, futureVelY;
+		var futureVelX, futureVelY, futureVel;
 		
 		ax = (e.accelerationIncludingGravity.x)/5;
 		ay = (e.accelerationIncludingGravity.y)/5;
@@ -73,6 +84,13 @@ function motionApp(){
 		} else {
 			futureVelX = ship.velX+ax;
 			futureVelY = ship.velY-ay;
+		}
+		
+		futureVel = Math.sqrt(futureVelX*futureVelX+futureVelY*futureVelY);
+		
+		if(futureVel >= 5){
+			futureVelX = ship.velX;
+		    futureVelY = ship.velY;
 		}
 		
 		ship.velX = futureVelX;
