@@ -57,18 +57,29 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = e.acceleration.x * 5;
-		ay = e.acceleration.y * 5;
+		var futureVelX, futureVelY, futureVel;
+		
+		ax = e.accelerationIncludingGravity.x;
+		ay = e.accelerationIncludingGravity.y;
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
-			ship.velX += ax;
-			ship.velY += ay;
+			futureVelX = ship.velX+ax;
+			futureVelY = ship.velY+ay;
 		} else {
-			ship.velX += ax;
-			ship.velY -= ay;
+			futureVelX = ship.velX+ax;
+			futureVelY = ship.velY-ay;
 		}
 		
+		futureVel = Math.sqrt(futureVelX*futureVelX + futureVelY*futureVelY);
+		if(futureVel >= 4){
+			ship.velX = ship.velX;
+			ship.velY = ship.velY
+		}else{
+			ship.velX = futureVelX;
+			ship.velY = futureVelY;
+		}
+	
 		ship.angle = Math.atan2(ship.velY, ship.velX);
 		
 		gammaOutput.innerHTML = "Device Left/Right Tilt: "+tiltLR;
