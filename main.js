@@ -67,8 +67,8 @@ function motionApp(){
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
-			futureVelX = ship.velX+ax;
-			futureVelY = ship.velY+ay;
+			futureVelX = ship.velX+ay;
+			futureVelY = ship.velY+ax;
 		} else {
 			futureVelX = ship.velX+ax;
 			futureVelY = ship.velY-ay;
