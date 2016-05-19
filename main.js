@@ -88,7 +88,7 @@ function motionApp(){
 		
 		futureVel = Math.sqrt(futureVelX*futureVelX+futureVelY*futureVelY);
 		
-		if(futureVel >= 5){
+		if(futureVel >= 10){
 			futureVelX = ship.velX;
 		    futureVelY = ship.velY;
 		}
