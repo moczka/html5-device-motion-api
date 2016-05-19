@@ -62,8 +62,8 @@ function motionApp(){
 		
 		var futureVelX, futureVelY;
 		
-		ax = (e.acceleration.x)*5;
-		ay = (e.acceleration.y)*5;
+		ax = (e.accelerationIncludingGravity.x)/10;
+		ay = (e.accelerationIncludingGravity.y)/10;
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
