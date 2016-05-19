@@ -42,8 +42,8 @@ function motionApp(){
 		}
 		
 		
-		ship.x = (ship.x + ship.velX) / 50;
-		ship.y = (ship.y + ship.velY) / 50;
+		ship.x += ship.velX;
+		ship.y += ship.velY;
 		
 		ship.angle = Math.atan2(ship.velY, ship.velX);	
 		
@@ -64,8 +64,8 @@ function motionApp(){
 		tiltFB = e.rotationRate.beta;
 		dir = e.rotationRate.alpha;
 		
-		ax = e.accelerationIncludingGravity.x * 5;
-		ay = e.accelerationIncludingGravity.y * 5;
+		ax = (e.accelerationIncludingGravity.x * 5)/50;
+		ay = (e.accelerationIncludingGravity.y * 5)/50;
 	
 		gammaOutput.innerHTML = "Device Left/Right Tilt: "+tiltLR;
 		betaOutput.innerHTML = "Device Front/Back Tilt: "+tiltFB;
