@@ -32,20 +32,13 @@ function motionApp(){
 		mainContext.fillStyle = '#000';
 		mainContext.fillRect(0,0,mainCanvas.width, mainCanvas.height);
 	
-		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
-		if (landscapeOrientation) {
-			ship.velX += ax;
-			ship.velY += ay;
-		} else {
-			ship.velX += ax;
-			ship.velY -= ay;
-		}
+		
 		
 		
 		ship.x += ship.velX;
 		ship.y += ship.velY;
 		
-		ship.angle = Math.atan2(ship.velY, ship.velX);	
+			
 		
 		mainContext.save();
 		mainContext.translate(ship.x, ship.y);
@@ -66,7 +59,18 @@ function motionApp(){
 		
 		ax = (e.accelerationIncludingGravity.x * 5)/50;
 		ay = (e.accelerationIncludingGravity.y * 5)/50;
-	
+		
+		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
+		if (landscapeOrientation) {
+			ship.velX += ax;
+			ship.velY += ay;
+		} else {
+			ship.velX += ax;
+			ship.velY -= ay;
+		}
+		
+		ship.angle = Math.atan2(ship.velY, ship.velX);
+		
 		gammaOutput.innerHTML = "Device Left/Right Tilt: "+tiltLR;
 		betaOutput.innerHTML = "Device Front/Back Tilt: "+tiltFB;
 		
