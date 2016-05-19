@@ -23,6 +23,7 @@ function motionApp(){
 	var betaOutput = $('#betaOutput');
 	var mainCanvas = $('#mainCanvas');
 	var mainContext = mainCanvas.getContext('2d');
+	var friction = 0.005;
 	
 	var ship = {x:425, y:240, velX:0, velY:0, thrust:0.25, width:35, height:28, angle:0};
 	
@@ -34,8 +35,8 @@ function motionApp(){
 	
 		
 		
-		ship.velX = ship.velX*0.98;
-		ship.velY = ship.velY*0.98;
+		ship.velX -= ship.velX*friction;
+		ship.velY -= ship.velY*friction;
 		
 		
 		ship.x += ship.velX;
@@ -62,8 +63,8 @@ function motionApp(){
 		
 		var futureVelX, futureVelY;
 		
-		ax = (e.accelerationIncludingGravity.x)/10;
-		ay = (e.accelerationIncludingGravity.y)/10;
+		ax = (e.accelerationIncludingGravity.x)/5;
+		ay = (e.accelerationIncludingGravity.y)/5;
 		
 		var landscapeOrientation = window.innerWidth/window.innerHeight > 1;
 		if (landscapeOrientation) {
